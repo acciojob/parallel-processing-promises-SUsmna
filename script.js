@@ -10,7 +10,7 @@ const images = [
 
 // const outputDiv = document.getElementById('output');
 // const downloadButton = document.getElementById('download-images-button');
-downloadButton.addEventListener('click', () => {
+btn.addEventListener('click', () => {
 	outputDiv.innerHTML = 'Loading...';
 	const imagePromises = imageUrls.map(imgObj => loadImage(imgObj.url));
 	Promise.all(imagePromises)
