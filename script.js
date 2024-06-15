@@ -8,8 +8,8 @@ const images = [
   { url: "https://picsum.photos/id/239/200/300" },
 ];
 
-const outputDiv = document.getElementById('output');
-const downloadButton = document.getElementById('download-images-button');
+// const outputDiv = document.getElementById('output');
+// const downloadButton = document.getElementById('download-images-button');
 downloadButton.addEventListener('click', () => {
 	outputDiv.innerHTML = 'Loading...';
 	const imagePromises = imageUrls.map(imgObj => loadImage(imgObj.url));
