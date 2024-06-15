@@ -1,6 +1,6 @@
 //your JS code here. If required.
-// const output = document.getElementById("output");
-// const btn = document.getElementById("download-images-button");
+const output = document.getElementById("output");
+const btn = document.getElementById("download-images-button");
 
 const images = [
   { url: "https://picsum.photos/id/237/200/300" },
@@ -8,27 +8,33 @@ const images = [
   { url: "https://picsum.photos/id/239/200/300" },
 ];
 
-const outputDiv = document.getElementById('output');
-const downloadButton = document.getElementById('download-images-button');
-downloadButton.addEventListener('click', () => {
-	outputDiv.innerHTML = 'Loading...';
-	const imagePromises = imageUrls.map(imgObj => loadImage(imgObj.url));
-	Promise.all(imagePromises)
-		.then(images => {
-			outputDiv.innerHTML = '';
-			images.forEach(img => {
-				outputDiv.appendChild(img);
-                });
-            })
-            .catch(error => {
-                outputDiv.innerHTML = error;
-            });
-    });
-function loadImage(url) {
+function loadImage(image) {
     return new Promise((resolve, reject) => {
         const img = new Image();
-        img.src = url;
+        img.src = image.url;
+
         img.onload = () => resolve(img);
-        img.onerror = () => reject(`Failed to load image's URL: ${url}`);
+        img.onerror = () => reject(new Error(`Failed to load image's URL: ${image.url}`));
     });
 }
+
+// Function to handle button click and display images
+function downloadAndDisplayImages() {
+    output.innerHTML = ''; 
+
+    // Download all images in parallel
+    const imagePromises = images.map(loadImage);
+
+    Promise.all(imagePromises)
+        .then(downloadedImages => {
+            downloadedImages.forEach(img => {
+                output.appendChild(img);
+            });
+        })
+        .catch(error => {
+            console.error(error.message);
+        });
+}
+
+// Attach click event to the button
+btn.addEventListener('click', downloadAndDisplayImages);
