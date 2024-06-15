@@ -30,6 +30,5 @@ function loadImage(url) {
         img.src = url;
         img.onload = () => resolve(img);
         img.onerror = () => reject(`Failed to load image's URL: ${url}`);
-        });
-    }
-})
+    });
+}
