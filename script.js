@@ -1,6 +1,6 @@
 //your JS code here. If required.
-const output = document.getElementById("output");
-const btn = document.getElementById("download-images-button");
+// const output = document.getElementById("output");
+// const btn = document.getElementById("download-images-button");
 
 const images = [
   { url: "https://picsum.photos/id/237/200/300" },
@@ -8,9 +8,9 @@ const images = [
   { url: "https://picsum.photos/id/239/200/300" },
 ];
 
-// const outputDiv = document.getElementById('output');
-// const downloadButton = document.getElementById('download-images-button');
-btn.addEventListener('click', () => {
+const outputDiv = document.getElementById('output');
+const downloadButton = document.getElementById('download-images-button');
+downloadButton.addEventListener('click', () => {
 	outputDiv.innerHTML = 'Loading...';
 	const imagePromises = imageUrls.map(imgObj => loadImage(imgObj.url));
 	Promise.all(imagePromises)
