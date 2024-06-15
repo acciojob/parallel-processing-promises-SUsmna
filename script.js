@@ -8,8 +8,6 @@ const images = [
   { url: "https://picsum.photos/id/239/200/300" },
 ];
 
-
-
 const outputDiv = document.getElementById('output');
 const downloadButton = document.getElementById('download-images-button');
 downloadButton.addEventListener('click', () => {
@@ -31,7 +29,7 @@ function loadImage(url) {
         const img = new Image();
         img.src = url;
         img.onload = () => resolve(img);
-        img.onerror = () => reject(Failed to load image's URL: ${url});
+        img.onerror = () => reject(`Failed to load image's URL: ${url}`);
         });
     }
 })
